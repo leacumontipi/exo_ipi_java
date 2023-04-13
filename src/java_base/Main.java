@@ -1,8 +1,13 @@
 package java_base;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -117,11 +122,40 @@ public class Main {
 		System.out.println("Il y a " + nbMots + " mots.");
 	}
 	
+	public static int nbMotsPhraseFunction(String entree) {
+		int nbMots = 1;
+		for (int i = 0 ; i < entree.length() ; i++) {
+			if(entree.charAt(i) == ' ') {
+				nbMots++;
+			}
+		}
+		return nbMots;
+	}
+	
 	public static void saveSentence(String entree) throws IOException {
 	    BufferedWriter writer = new BufferedWriter(new FileWriter("Sauvegarde.txt"));
 	    writer.write(entree);
 	    
 	    writer.close();
+	}
+	
+	@SuppressWarnings("unused")
+	public static void readFileAndCount(String filename) throws IOException {
+		File file = new File(filename);
+		
+		if(file == null) { System.out.println("CE FICHIER N'EXISTE PAS");}
+		
+        Reader reader = new FileReader(file);
+        BufferedReader br = new BufferedReader(reader);
+        
+        String line;
+        int sommeMots = 0;
+        while((line = br.readLine()) != null) {
+            System.out.println(line);
+            sommeMots += nbMotsPhraseFunction(line);
+        }
+        System.out.println("Il y a " + sommeMots + " dans ce fichier.");
+        br.close();
 	}
 	
 	public static void main(String[] args) throws IOException {
@@ -140,12 +174,17 @@ public class Main {
 		/*System.out.println("Allons jouer un petit jeu !\nIl faut que tu devines le nombre qu'a choisi l'ordinateur. Tu as droit à 5 coups.\nBonne chance!");
 		petitJeu();*/
 		
-		nbMotsPhrase(scanner.nextLine());
-		saveSentence(scanner.nextLine());
+		/*nbMotsPhrase(scanner.nextLine());
+		saveSentence(scanner.nextLine());*/
+		
+		//readFileAndCount("Fichiertest.txt");
 		
 		/*Rectangle rectangle = new Rectangle(3, 5);
 		rectangle.display();
 		rectangle.calculSurface();*/
+		
+		
+		
 				
 	}
 
