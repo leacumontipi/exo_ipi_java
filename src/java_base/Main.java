@@ -177,14 +177,11 @@ public class Main {
 		/*nbMotsPhrase(scanner.nextLine());
 		saveSentence(scanner.nextLine());*/
 		
-		//readFileAndCount("Fichiertest.txt");
+		readFileAndCount("Fichiertest.txt");
 		
 		/*Rectangle rectangle = new Rectangle(3, 5);
 		rectangle.display();
 		rectangle.calculSurface();*/
-		
-		
-		
 				
 	}
 
